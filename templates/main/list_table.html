@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+{% include 'main/includes/header.html' %}
+{% endblock %}
+{% block main %}
+    <table>
+        <tr>
+            <th>#Id</th>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Distance</th>
+            <th>Date</th>
+        </tr>
+
+        {% for table in table_list %}
+
+            <tr>
+                <td><b>{{ table.id }}</b></td>
+                <td>{{ table.name }}</td>
+                <td>{{ table.numbers }}</td>
+                <td>{{ table.distance }}</td>
+                <td>{{ table.data }}</td>
+            </tr>
+        {% empty %}
+            <li>No ads yet.</li>
+        {% endfor %}
+    </table>
+
+{% endblock %}
+{% block pagination %}
+    <div class="center">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+<footer>
+{% block footer %}
+{% include 'main/includes/footer.html' %}
+{% endblock %}
+</footer>
