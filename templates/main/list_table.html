@@ -6,7 +6,7 @@
     {% include 'main/includes/header.html' %}
 {% endblock %}
 {% block search %}
-<form class="form-inline"  method="post">
+<form class="form-inline"  method="get">
     {% csrf_token %}
     {{ form_filter|crispy }}
     <button type="submit" class="btn btn-primary">Search</button>
@@ -43,13 +43,13 @@
         <ul class="pagination">
             {% if page_obj.has_previous %}
                 <li class="page-item"><a class="page-link"
-                                         href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                                         href="?page={{ page_obj.previous_page_number }}&column={{ request.GET.column }}&condition={{ request.GET.condition }}&value={{ request.GET.value }}">Previous</a></li>
             {% endif %}
             {% for i in paginator.page_range %}
-                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ i }}&column={{ request.GET.column }}&condition={{ request.GET.condition }}&value={{ request.GET.value }}">{{ i }}</a></li>
             {% endfor %}
             {% if page_obj.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}&column={{ request.GET.column }}&condition={{ request.GET.condition }}&value={{ request.GET.value }}">Next</a>
                 </li>
             {% endif %}
         </ul>

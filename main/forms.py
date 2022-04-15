@@ -13,6 +13,7 @@ class TableForm(forms.Form):
         ('equal', '=='),
         ('more', '>'),
         ('less', '<'),
+        ('contains', 'in')
     )
 
     column = forms.ChoiceField(choices=CHOICES_COLUMN)
