@@ -1,8 +1,8 @@
 # Create your views here.
 from django.views.generic import ListView
 
+from .forms import TableForm
 from .models import Table
-from .filters import TableFilter
 
 
 class TableView(ListView):
@@ -12,6 +12,11 @@ class TableView(ListView):
     context_object_name = 'table_list'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['filter'] = TableFilter(self.request.GET, queryset=self.get_queryset())
+        context = super(TableView, self).get_context_data(**kwargs)
+        context['form_filter'] = TableForm()
         return context
+
+    # def get_queryset(self):
+    #     if self.request.GET.get:
+    #         self.queryset = Table.objects.filter(self.request.GET)
+    #     return super().get_queryset()

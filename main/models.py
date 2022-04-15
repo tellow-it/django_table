@@ -11,5 +11,3 @@ class Table(models.Model):
     def __str__(self):
         return self.name + str(self.numbers) + str(self.distance) + str(self.data)
 
-    class Meta:
-        ordering = ('data', )
