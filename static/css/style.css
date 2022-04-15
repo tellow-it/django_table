@@ -16,7 +16,8 @@ table {
 }
 
 main {
-    margin-top: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -43,6 +44,7 @@ ul.pagination {
     display: inline-block;
     padding: 10px;
     margin: 10px;
+    margin-bottom: 100px;
 }
 
 ul.pagination li {
@@ -73,9 +75,14 @@ ul.pagination li a:hover:not(.active) {
 div.center {
     text-align: center;
 }
+form{
+    margin: 20px;
+}
+button{
+    margin: 20px;
+}
 
 footer {
-    position: fixed; /* Фиксированное положение */
     left: 0;
     bottom: 0; /* Левый нижний угол */
     padding: 20px; /* Поля вокруг текста */

@@ -7,3 +7,9 @@ class Table(models.Model):
     numbers = models.PositiveIntegerField(default=0)
     distance = models.PositiveIntegerField(default=0)
     data = models.DateTimeField()
+
+    def __str__(self):
+        return self.name + str(self.numbers) + str(self.distance) + str(self.data)
+
+    class Meta:
+        ordering = ('data', )

@@ -1,8 +1,18 @@
 {% extends 'main/base.html' %}
 
 {% block header %}
-{% include 'main/includes/header.html' %}
+    {% include 'main/includes/header.html' %}
 {% endblock %}
+{% block search %}
+    {% load bootstrap %}
+
+    <form method="GET">
+        {{ filter.form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+{% endblock %}
+
 {% block main %}
     <table>
         <tr>
@@ -13,7 +23,7 @@
             <th>Date</th>
         </tr>
 
-        {% for table in table_list %}
+        {% for table in filter.qs %}
 
             <tr>
                 <td><b>{{ table.id }}</b></td>
@@ -48,7 +58,7 @@
 {% endblock %}
 
 <footer>
-{% block footer %}
-{% include 'main/includes/footer.html' %}
-{% endblock %}
+    {% block footer %}
+        {% include 'main/includes/footer.html' %}
+    {% endblock %}
 </footer>
