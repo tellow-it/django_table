@@ -23,37 +23,45 @@ class TableView(ListView):
         column = self.request.GET.get('column')
         condition = self.request.GET.get('condition')
         value = self.request.GET.get('value')
+        self.queryset = Table.objects.all()
         print(column)
         print(condition)
         print(value)
+        if column is None and condition is None and value is None:
+            return Table.objects.all()
+        if column == '0' and condition == 'empty':
+            return Table.objects.all()
         if column == '1' and condition == 'equal':
-            new_context = Table.objects.all().filter(name=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(name=value)
+            return self.queryset
         if column == '1' and condition == 'contains':
-            new_context = Table.objects.all().filter(name__contains=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(name__contains=value)
+            return self.queryset
+        if column == '1' and (condition != 'equal' or condition != 'contains'):
+            return Table.objects.all()
         if column == '2' and condition == 'equal':
-            new_context = Table.objects.all().filter(numbers=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(numbers=value)
+            return self.queryset
         if column == '2' and condition == 'more':
-            new_context = Table.objects.all().filter(numbers__gt=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(numbers__gt=value)
+            return self.queryset
         if column == '2' and condition == 'less':
-            new_context = Table.objects.all().filter(numbers__lt=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(numbers__lt=value)
+            return self.queryset
         if column == '2' and condition == 'contains':
-            new_context = Table.objects.all().filter(numbers__contains=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(numbers__contains=value)
+            return self.queryset
         if column == '3' and condition == 'equal':
-            new_context = Table.objects.all().filter(distance=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(distance=value)
+            return self.queryset
         if column == '3' and condition == 'more':
-            new_context = Table.objects.all().filter(distance__gt=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(distance__gt=value)
+            return self.queryset
         if column == '3' and condition == 'less':
-            new_context = Table.objects.all().filter(distance__lt=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(distance__lt=value)
+            return self.queryset
         if column == '3' and condition == 'contains':
-            new_context = Table.objects.all().filter(distance__contains=value)
-            return new_context
+            self.queryset = Table.objects.all().filter(distance__contains=value)
+            return self.queryset
+        return self.queryset
 
